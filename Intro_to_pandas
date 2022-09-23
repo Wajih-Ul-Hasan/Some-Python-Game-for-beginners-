@@ -1,0 +1,14 @@
+import pandas as pd
+
+data = pd.read_csv("D:/backup/My_old_data/weather_data.csv")
+
+return the enitr colum of temprature
+data.temp
+
+Give specific row content having day equal to monday 
+
+monday = data[data.day == "Monday"]
+degree = int(monday.temp)
+
+farenhite = ((degree * 1.8) + 32)
+print(farenhite)
