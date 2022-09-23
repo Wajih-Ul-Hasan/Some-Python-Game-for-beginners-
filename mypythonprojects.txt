@@ -1,0 +1,323 @@
+auto-password-generator
+from random import shuffle
+import random
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+numbers = ['1','2','3','4','5','6','7','8','9']
+symbols = ['!','#','$','%',')','(','*','+']
+mypass=[]
+no_letters = input("How many letters you want in your password: ")
+no_nums = input("How many you numbers want in your password: ")
+no_chars = input("How many symbols you want in your password: ")
+for i in range(int(no_letters)):
+ mypass.append(chr(random.randint(ord('a'), ord('z'))))
+for i in range(int(no_nums)):
+  mypass.append(chr(random.randint(ord('1'), ord('9'))))
+for i in range(int(no_chars)):
+  mypass.append(chr(random.randint(ord('!'), ord('+'))))
+shuffle(mypass)
+listToStr = ' '.join([str(elem) for elem in mypass])
+print(listToStr) 
+
+HANG-MAN-GAME:
+-----------------------------------------------------------------------------------------------------------------------------------------------
+mport random
+
+words = ["apple", "car", "berlin", "school"]
+answer = random.choice(words)
+temp = answer
+charCount = len(answer)
+success = 0
+life = charCount
+output = ("-" * charCount)
+guess = ''
+
+while life != 0:
+  if (success == charCount):
+    break;
+
+  guess = input("Enter a letter: ")
+
+  if ( temp.find(guess) == -1 ):
+    life = life - 1
+    continue
+
+  while ( temp.find(guess) != -1 ):
+    index = temp.find(guess)
+    temp = temp.replace(guess, '-', 1)  
+    output = output[:index] + guess + output[index+1:]
+    success+=1
+
+  print(output)
+    
+if ( life == 0 ):
+  print("Game Over... Word was", answer)
+else:
+  print("You guessed it right. Congratulations...")
+--------------------------------------------------------------------------------------------------------------------------------------------
+name = 'apple'
+life = 3
+filled = len(name)
+copyname = []
+for i in range(0,5):
+  copyname+='-'
+print(copyname) 
+
+while life != 0:
+  flag = 0
+  
+  if filled == 0:
+    break
+
+  key = input("enter a key: ")
+  for index in range(0,5):
+    letter = name[index]
+    if (letter == key):
+      copyname[index] = letter
+      filled-=1
+    else:
+      flag+=1
+
+  if flag == len(name):
+    life-=1
+    
+  print(copyname)
+  
+if life == 0:
+  print("Game Over!!!")
+else:
+  print("You Win!!!")
+-------------------------------------------------------------------------------------------------------------------------------------------------
+encryption and decryption:
+--------------------------
+text = input("enter text: ").lower()
+shifts = int(input("enter number of shifts:"))
+cipherStr = ""
+decodedStr = ""
+
+for position in range(len(text)):
+  num = chr(ord(text[position])+(shifts))
+  cipherStr+=num
+print(f"Encoded text:{cipherStr}")
+
+for position in range(len(cipherStr)):
+  num = chr(ord(cipherStr[position])-(shifts))
+  decodedStr+=num
+print(f"Decoded text:{decodedStr}")
+------------------------------------------------------------------------------------------------------------------------------------
+print("-------------Seat Booking System:------------------")
+print("--"*50)
+row1 = ["✅","✅","✅"]
+row2 = ["✅","✅","✅"]
+row3 = ["✅","✅","✅"]
+row = 0
+colum = 0
+to_exit = ''
+map = [row1,row2,row3]
+
+while True:
+  to_exit = input("Press (y) to continue and (x) to exit ")
+  if to_exit == 'x' or to_exit == 'X':
+    print("thanks for using our application:")
+    break
+  elif to_exit == 'y' or to_exit == 'Y':
+    position = input("Please, select row and colum no: where you want to sit: ")
+    print("--"*30)
+    row = int(position[0])
+    colum = int(position[1])
+    if map[row - 1][colum - 1]  != "❌":
+      map[row - 1][colum - 1] = "❌"
+      print(row1)
+      print(row2)
+      print(row3)
+    else:
+      print("Already Booked")
+--------------------------------------------------------------------
+higest bidder finder from dictionary:
+--------------------------------------------------------------------
+from replit import clear
+
+bids = {}
+max = 0
+option = ''
+
+while True:
+  if option == 'no':
+    break
+  else :
+    name = input("enter name: ")
+    price = int (input("enter price: "))
+    bids[name] = price
+    option = input("Is there any other bidder:")
+    clear()
+
+
+for bid in bids:
+  if max < bids[bid]:
+    max = bids[bid]
+    person =  bid
+
+print("max bid was: usd",max,"by Mr:",person)
+----------------------------------------------------------------------------------------------------------------------
+def add(num1,num2):
+  result = num1 + num2
+  return result
+
+def sub(num1,num2):
+  result = num1 - num2
+  return result
+
+def divide(num1,num2):
+  result = num1 / num2
+  return result
+
+def multiply(num1,num2):
+  result = num1 * num2
+  return result
+
+operations = {"/":divide,"*":multiply,"+":add,"-": sub}
+print("Simple Calculator")
+
+for symbol in operations:
+  print(symbol)
+
+num1 = int(input("enter number:"))
+num2 = int(input("enter number:"))
+option = input("choose symbol to perform operation ")
+result = operations[option]
+ans = result(num1,num2)
+print(f"{num1} {option} {num2} = {ans}")
+----------------------------------------------------------------------------------------------------------------------
+import random
+print("welcome to number guessing game! ")
+print("I am thinking of a number between 1 and 100. ")
+difficulty_level = input("choose a difficulty level 'easy' or 'hard: '")
+
+Number = random.randint(1,101)
+attempt = 0
+
+if difficulty_level == 'easy':
+  attempt = 10
+else:
+  attempt = 5
+
+while attempt != 0:
+  guess = int(input("Guess a number:"))
+  
+  if guess == Number:
+    print("you won!")
+    break
+  if guess > Number:
+    print("too high!")
+    attempt-=1
+    print(f"you have {attempt} left")
+  if guess < Number:
+    print("too low!")
+    attempt-=1
+    print(f"you have {attempt} left")
+
+print("you run out guesses:")
+print("you loose")
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+from turtle import Turtle,Screen
+import random
+timmy = Turtle()
+gamescr = Screen()
+colors = ["red","blue","orange"]
+timmy.speed("fastest")
+timmy.pensize(1)
+
+for circle in range(100):
+    timmy.color(random.choice(colors))
+    timmy.circle(100)
+    timmy.setheading(timmy.heading()+4)
+
+gamescr.exitonclick()
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+from turtle import Turtle,Screen
+
+tim = Turtle()
+scr = Screen()
+tim.speed('fastest')
+
+
+def move_right():
+    tim.right(10)
+    # This Faces Rotate in right direction
+    tim.forward(10)
+
+def move_left():
+    tim.left(10)
+     # This Faces Rotate in left direction
+    tim.forward(10)
+
+
+def move_forward():
+    tim.forward(50)
+
+def move_backward():
+    tim.backward(50)    
+
+
+def scrclear():
+    tim.clear()
+    tim.home()
+    tim.penup()
+    tim.pendown()
+
+
+
+scr.listen()
+scr.onkey(key = 'w', fun= move_right)
+scr.onkey(key = 's', fun= move_left)
+scr.onkey(key = 'u', fun= move_forward)
+scr.onkey(key = 'd', fun= move_backward)
+scr.onkey(key = 'c' ,fun= scrclear)
+scr.exitonclick()
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+from pickle import TRUE
+from turtle import Turtle,Screen
+import random
+
+is_race_on = False
+winning_color = ''
+scr = Screen()
+scr.setup(width = 500 , height = 400)
+user_bet = scr.textinput(title = "Make your bet" , prompt = 'which turtle is going to win the race? select color: ')
+print(user_bet)
+
+
+colors = ['red','blue','violet',"pink","orange"]
+y_axis = [-1,40,80,-40,-80]
+all_turtle = []
+
+for index in range(0,5):
+    new_turtle = Turtle(shape = 'turtle')
+    new_turtle.speed('fastest')
+    new_turtle.penup()
+    new_turtle.color(colors[index])
+    new_turtle.goto(x = -220 , y = y_axis[index])
+    all_turtle.append(new_turtle)
+
+
+if user_bet:
+    is_race_on = TRUE
+
+while is_race_on:
+
+    for turtle in all_turtle:
+        if turtle.xcor() > 230:
+            is_race_on = False
+            winning_color = turtle.pencolor()
+        if winning_color == user_bet:
+            print(f"You guess it right {winning_color} turtle won the race")
+        else:
+            print(f"You guess it wrong {winning_color} turtle won the race")
+        distance = random.randint(0,10)
+        turtle.forward(distance)
+
+scr.exitonclick()
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
